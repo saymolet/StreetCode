@@ -12,11 +12,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'dotnet build ./Streetcode/Streetcode.sln --configuration Release --no-restore'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'dotnet build ./Streetcode/Streetcode.sln --configuration Release --no-restore'
                 sh 'dotnet tool install -g coverlet.console'
             }
         }
