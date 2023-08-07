@@ -22,8 +22,8 @@ pipeline {
             steps {
                 script {
                     Date date = new Date()
-                    String dateTag = date.format("HH-dd-MM-yy", TimeZone.getTimeZone('GMT+3'))
-                    sh 'docker build -t streetcode/StreetCode:${dateTag} .'
+                    env.DATETAG = date.format("HH-dd-MM-yy", TimeZone.getTimeZone('GMT+3'))
+                    sh 'docker build -t streetcode/StreetCode:${env.DATETAG} .'
                 }
             }
         }
