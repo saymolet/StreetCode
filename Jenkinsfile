@@ -6,13 +6,11 @@ pipeline {
         stage('Restore Dependencies') {
             steps {
                 sh 'dotnet restore ./Streetcode/Streetcode.sln'
-                sh 'dotnet tool install xmldocmd -g'
             }
         }
         stage('Build') {
             steps {
                 sh 'dotnet build ./Streetcode/Streetcode.sln --configuration Release --no-restore'
-                sh 'dotnet tool install -g coverlet.console'
             }
         }
         stage('Test') {
