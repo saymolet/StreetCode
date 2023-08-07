@@ -23,7 +23,7 @@ pipeline {
                 script {
                     Date date = new Date()
                     env.DATETAG = date.format("HH-dd-MM-yy", TimeZone.getTimeZone('GMT+3'))
-                    sh "docker build -t streetcode/StreetCode:${env.DATETAG} ."
+                    sh "docker build -t streetcode/streetcode:${env.DATETAG} ."
                 }
             }
         }
