@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     Date date = new Date()
-                    env.DATETAG = date.format("HH-dd-MM-yy", TimeZone.getTimeZone('GMT+3'))
+                    env.DATETAG = date.format("dd-MM-yy", TimeZone.getTimeZone('GMT+3'))
                     sh "docker build -t saymolet/streetcode:${env.DATETAG} ."
                 }
             }
