@@ -18,11 +18,17 @@ pipeline {
                 sh 'dotnet test ./Streetcode/Streetcode.XUnitTest/Streetcode.XUnitTest.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage/coverage.xml'
             }
         }
+        stage('Docker prune') {
+            steps {
+                script {
+                    sh 'docker image prune --force --all --filter "until=72h"'
+                    sh 'docker system prune --force --all --filter "until=72h"'
+                }
+            }
+        }
         stage('Docker build') {
             steps {
                 script {
-                    // Date date = new Date()
-                    // env.DATETAG = date.format("dd-MM-yy", TimeZone.getTimeZone('GMT+3'))
                     sh "docker build -t saymolet/streetcode:latest ."
                 }
             }
