@@ -38,7 +38,7 @@ pipeline {
                 script {
                     Date date = new Date()
                     env.DATETAG = date.format("HH-dd-MM-yy", TimeZone.getTimeZone('GMT+3'))
-                    withCredentials([usernamePassword(credentialsId: 'docker-login-saymolet', passwordVariable: 'password', usernameVariable: 'username')]){
+                    withCredentials([usernamePassword(credentialsId: 'docker-login-streetcode', passwordVariable: 'password', usernameVariable: 'username')]){
                         sh 'echo "${password}" | docker login -u "${username}" --password-stdin'
                         sh "docker push saymolet/streetcode:latest"
                         sh "docker tag saymolet/streetcode:latest saymolet/streetcode:${env.DATETAG}"
